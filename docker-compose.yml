@@ -1,0 +1,6 @@
+services:
+  collection:
+    image: ${DOCKER_REGISTRY-}collection
+    build:
+      context: .
+      dockerfile: Collection/Dockerfile
