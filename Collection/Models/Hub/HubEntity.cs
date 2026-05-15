@@ -1,5 +1,6 @@
 ﻿using Collection.Models.User;
-
+using Collection.Models.Robot;
+using Collection.Models.Device;
 namespace Collection.Models.Hub
 {
     public class HubEntity

@@ -1,4 +1,5 @@
-﻿namespace Collection.Models.User
+﻿using Collection.Models.Hub;
+namespace Collection.Models.User
 {
 
     /*

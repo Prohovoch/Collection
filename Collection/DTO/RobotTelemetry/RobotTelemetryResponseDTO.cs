@@ -1,6 +1,6 @@
 ﻿namespace Collection.DTO.RobotTelemetry
 {
-    public class RobotTelemetryResponse
+    public class RobotTelemetryResponseDTO
     {
         public Guid Id { get; init; }
         public Guid RobotId { get; init; }

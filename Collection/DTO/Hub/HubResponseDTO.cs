@@ -1,4 +1,4 @@
-﻿
+﻿using Collection.DTO.Robot;
 using Collection.DTO.Device;
 namespace Collection.DTO.Hub
 {

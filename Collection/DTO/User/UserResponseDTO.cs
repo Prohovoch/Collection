@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿
 using Collection.DTO.Hub;
 namespace Collection.DTO.User
 {

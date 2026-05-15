@@ -1,5 +1,5 @@
 ﻿using Collection.Models.Hub;
-
+using Collection.Models.RobotTelemetry;
 namespace Collection.Models.Robot
 {
     public class RobotEntity

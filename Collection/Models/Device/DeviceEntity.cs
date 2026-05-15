@@ -1,5 +1,5 @@
 ﻿using Collection.Models.Hub;
-
+using Collection.Models.DeviceTelemetry;
 namespace Collection.Models.Device
 {
     public class DeviceEntity
