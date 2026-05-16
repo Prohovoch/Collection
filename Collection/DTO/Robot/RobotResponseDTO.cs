@@ -1,4 +1,5 @@
 ﻿using Collection.DTO.RobotTelemetry;
+using System.Collections.Immutable;
 namespace Collection.DTO.Robot
 {
     public class RobotResponseDTO
@@ -14,7 +15,7 @@ namespace Collection.DTO.Robot
     public class RobotResponseExtraDTO : RobotResponseDTO
     {
 
-        public IReadOnlyList<RobotTelemetryResponseDTO>? RobTelemetry { get; init; }
+        public RobotTelemetryResponseDTO? RobTelemetry { get; init; }
 
     }
 }

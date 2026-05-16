@@ -25,7 +25,7 @@ namespace Collection.Repository.User
             await _context.Users
             .Include(u => u.Hubs)
             .FirstOrDefaultAsync(u => u.Id == id, ct);
-        public async Task<IReadOnlyList<UserEntity>> GetAllAsync(CancellationToken ct = default) =>
+        public async Task<IReadOnlyCollection<UserEntity>> GetAllAsync(CancellationToken ct = default) =>
             await _context.Users.AsNoTracking().ToListAsync(ct);
 
 

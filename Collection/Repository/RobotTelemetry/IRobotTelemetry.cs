@@ -4,7 +4,7 @@ namespace Collection.Repository.RobotTelemetry
 {
     public interface IRobotTelemetry
     {
-        Task<IReadOnlyList<RobTelemetryEntity>> GetAllAsync(CancellationToken ct = default);
+        Task<IReadOnlyCollection<RobTelemetryEntity>> GetAllAsync(CancellationToken ct = default);
         Task<RobTelemetryEntity?> GetByIdAsync(Guid id, CancellationToken ct = default);
         Task<int> DeleteTelemAsync(Guid id, CancellationToken ct = default);
         public void CreateTelemetry(RobTelemetryEntity telemetry);

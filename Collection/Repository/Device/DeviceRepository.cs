@@ -14,7 +14,7 @@ namespace Collection.Repository.Device
 
         }
 
-        public async Task<IReadOnlyList<DeviceEntity>> GetAllAsync(CancellationToken ct = default) =>
+        public async Task<IReadOnlyCollection<DeviceEntity>> GetAllAsync(CancellationToken ct = default) =>
             await _context.Devices.AsNoTracking().ToListAsync(ct);
 
 

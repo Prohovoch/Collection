@@ -1,4 +1,5 @@
 ﻿using Collection.DTO.DeviceTelemetry;
+using System.Collections.Immutable;
 namespace Collection.DTO.Device
 {
 
@@ -12,7 +13,7 @@ namespace Collection.DTO.Device
 
     public class DeviceResponseExtraDTO : DeviceResponseDTO
     {
-        public IReadOnlyList<DeviceTelemetryResponseDTO>? DevTelem { get; init; }
+        public DeviceTelemetryResponseDTO? DevTelem { get; init; }
 
     }
 }

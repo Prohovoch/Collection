@@ -1,5 +1,6 @@
 ﻿
 using Collection.DTO.Hub;
+using System.Collections.Immutable;
 namespace Collection.DTO.User
 {
     public class UserResponseDTO
@@ -13,7 +14,7 @@ namespace Collection.DTO.User
 
     public class UserResponseHubsDTO : UserResponseDTO
     {
-        public IReadOnlyList<HubResponseDTO>? Hubs { get; init; }
+        public ImmutableArray<HubResponseDTO>? Hubs { get; init; }
     }
 
     }

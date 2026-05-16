@@ -1,5 +1,6 @@
 ﻿using Collection.DTO.Robot;
 using Collection.DTO.Device;
+using System.Collections.Immutable;
 namespace Collection.DTO.Hub
 {
     public class HubResponseDTO
@@ -14,8 +15,8 @@ namespace Collection.DTO.Hub
 
     public class HubResponseExtraDTO : HubResponseDTO
     {
-        public IReadOnlyList<DeviceResponseDTO>? Devices { get; init; }
-        public IReadOnlyList<RobotResponseDTO>? Robots { get; init; }
+        public ImmutableArray<DeviceResponseDTO>? Devices { get; init; }
+        public ImmutableArray<RobotResponseDTO>? Robots { get; init; }
         // ICollection<...>  Robots {get; init} = new List<Robots>()
     }
 }

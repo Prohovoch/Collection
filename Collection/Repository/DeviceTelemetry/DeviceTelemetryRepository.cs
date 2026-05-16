@@ -14,7 +14,7 @@ namespace Collection.Repository.DeviceTelemetry
         }
 
 
-        public async Task<IReadOnlyList<DevTelemetryEntity>> GetAllAsync(CancellationToken ct = default) =>
+        public async Task<IReadOnlyCollection<DevTelemetryEntity>> GetAllAsync(CancellationToken ct = default) =>
             await _context.DeviceTelemetries.AsNoTracking().ToListAsync(ct);
         public async Task<DevTelemetryEntity?> GetByIdAsync(Guid id, CancellationToken ct = default) =>
             await _context.DeviceTelemetries.FirstOrDefaultAsync(t => t.Id == id, ct);
