@@ -18,7 +18,7 @@ namespace Collection.Service.User
 
 
         // GET ALL
-        public async Task<IReadOnlyList<UserResponseDTO>> GetUsersResponseAsync(CancellationToken ct = default)
+        public async Task<ImmutableArray<UserResponseDTO>> GetUsersResponseAsync(CancellationToken ct = default)
         {
             var users = await _userRepository.GetAllAsync(ct);
 

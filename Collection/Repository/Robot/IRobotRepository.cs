@@ -4,7 +4,7 @@ namespace Collection.Repository.Robot
 {
     public interface IRobotRepository
     {
-        Task<IReadOnlyList<RobotEntity>> GetAllAsync(CancellationToken ct = default);
+        Task<IReadOnlyCollection<RobotEntity>> GetAllAsync(CancellationToken ct = default);
         Task<RobotEntity?> GetByIdAsync(Guid id, CancellationToken ct = default);
         
         Task<RobotEntity?> GetByIdTelemAsync(Guid id, CancellationToken ct = default);

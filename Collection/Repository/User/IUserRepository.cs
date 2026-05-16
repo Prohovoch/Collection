@@ -5,7 +5,7 @@ namespace Collection.Repository.User
     // Интерфейс, описывающий контракт исполнение задач репозиторием
     public interface IUserRepository
     {
-        Task<IReadOnlyList<UserEntity>> GetAllAsync(CancellationToken ct = default);
+        Task<IReadOnlyCollection<UserEntity>> GetAllAsync(CancellationToken ct = default);
         Task<UserEntity?> GetByIdAsync(Guid id, CancellationToken ct = default);
         Task<UserEntity?> GetByIdWithHubsAsync(Guid id, CancellationToken ct = default);
         Task<int> DeleteUserAsync(Guid id, CancellationToken ct = default);

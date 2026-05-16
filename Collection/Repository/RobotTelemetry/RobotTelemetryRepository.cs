@@ -16,7 +16,7 @@ namespace Collection.Repository.RobotTelemetry
         }
 
 
-        public async Task<IReadOnlyList<RobTelemetryEntity>> GetAllAsync(CancellationToken ct = default) =>
+        public async Task<IReadOnlyCollection<RobTelemetryEntity>> GetAllAsync(CancellationToken ct = default) =>
             await _Context.RobotTelemetries.AsNoTracking().ToListAsync(ct);
         public async Task<RobTelemetryEntity?> GetByIdAsync(Guid id, CancellationToken ct = default) =>
             await _Context.RobotTelemetries.Where(rt => rt.Id == id).FirstOrDefaultAsync(ct);

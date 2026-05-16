@@ -24,7 +24,7 @@ namespace Collection.Repository.Hub
             .AsSplitQuery()
             .FirstOrDefaultAsync(h => h.Id == id, ct);
 
-        public async Task<IReadOnlyList<HubEntity>> GetAllAsync(CancellationToken ct = default) =>
+        public async Task<IReadOnlyCollection<HubEntity>> GetAllAsync(CancellationToken ct = default) =>
             await _context.Hubs.AsNoTracking().ToListAsync(ct);
 
 

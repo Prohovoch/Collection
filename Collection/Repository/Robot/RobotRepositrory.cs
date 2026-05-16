@@ -14,7 +14,7 @@ namespace Collection.Repository.Robot
 
         }
 
-        public async Task<IReadOnlyList<RobotEntity>> GetAllAsync(CancellationToken ct = default) =>
+        public async Task<IReadOnlyCollection<RobotEntity>> GetAllAsync(CancellationToken ct = default) =>
            await _context.Robots.AsNoTracking().ToListAsync(ct);
 
 

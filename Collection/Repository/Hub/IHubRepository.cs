@@ -4,7 +4,7 @@ namespace Collection.Repository.Hub
 {
     public interface IHubRepository
     {
-        Task<IReadOnlyList<HubEntity>> GetAllAsync(CancellationToken ct = default);
+        Task<IReadOnlyCollection<HubEntity>> GetAllAsync(CancellationToken ct = default);
         Task<HubEntity?> GetByIdAsync(Guid id, CancellationToken ct = default);
         // Task<HubEntity?>GetByIdWithDevices(Guid id);
         // Task<HubEntity?> GetByIdWithRobots(Guid id);
