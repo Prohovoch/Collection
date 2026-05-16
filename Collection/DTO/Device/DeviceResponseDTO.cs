@@ -13,7 +13,7 @@ namespace Collection.DTO.Device
 
     public class DeviceResponseExtraDTO : DeviceResponseDTO
     {
-        public ImmutableArray<DeviceTelemetryResponseDTO>? DevTelem { get; init; }
+        public DeviceTelemetryResponseDTO? DevTelem { get; init; }
 
     }
 }

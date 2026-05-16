@@ -15,7 +15,7 @@ namespace Collection.DTO.Robot
     public class RobotResponseExtraDTO : RobotResponseDTO
     {
 
-        public ImmutableArray<RobotTelemetryResponseDTO>? RobTelemetry { get; init; }
+        public RobotTelemetryResponseDTO? RobTelemetry { get; init; }
 
     }
 }

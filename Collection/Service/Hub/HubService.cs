@@ -61,13 +61,13 @@ namespace Collection.Service.Hub
                     Id = d.Id,
                     DevAlias = d.DevAlias,
                     HubId = d.HubId
-                }).ToImmutableArray() ?? [],
+                }).ToImmutableArray(),
                 Robots = hub.Robots?.Select(r => new RobotResponseDTO
                 {
                     Id = r.Id,
                     DevAlias = r.DevAlias,
                     HubId = r.HubId
-                }).ToImmutableArray() ?? []
+                }).ToImmutableArray()
             };
         }
 

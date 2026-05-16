@@ -67,7 +67,7 @@ namespace Collection.Service.User
                     Id = h.Id,
                     HubAlias = h.HubAlias,
                     IsActive = h.HubIsActive
-                }).ToImmutableArray() ?? []
+                }).ToImmutableArray()
             };
         }
 
