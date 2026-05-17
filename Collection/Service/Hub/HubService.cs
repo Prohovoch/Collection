@@ -87,6 +87,7 @@ namespace Collection.Service.Hub
         {
             var hub = await _hubRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Hub {id} not found");
             hub.HubAlias = update.HubAlias;
+            hub.HubIsActive = update.IsActive;
 
             
                
