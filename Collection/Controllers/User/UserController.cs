@@ -16,6 +16,10 @@ namespace Collection.Controllers.User
         }
 
         [HttpGet]
+      
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
         {
             try
@@ -34,6 +38,9 @@ namespace Collection.Controllers.User
         }
 
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken ct = default)
         {
             try
@@ -56,6 +63,10 @@ namespace Collection.Controllers.User
         }
 
         [HttpGet("{id:guid}/hubs")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetWithHubs(Guid id, CancellationToken ct = default)
         {
             try
@@ -65,7 +76,7 @@ namespace Collection.Controllers.User
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return StatusCode(400, ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -78,6 +89,9 @@ namespace Collection.Controllers.User
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(UserRequestDTO creation, CancellationToken ct = default)
         {
             try
@@ -96,6 +110,10 @@ namespace Collection.Controllers.User
         }
 
         [HttpPut("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(Guid id, UserUpdateDTO update, CancellationToken ct = default)
         {
             try
@@ -105,7 +123,7 @@ namespace Collection.Controllers.User
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException)
             {
@@ -116,7 +134,10 @@ namespace Collection.Controllers.User
                 return StatusCode(500, ex.Message);
             }
         }
-
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPatch("{id:guid}")]
         public async Task<IActionResult> Patch(Guid id, UserPatchDTO patch, CancellationToken ct)
         {
@@ -127,7 +148,7 @@ namespace Collection.Controllers.User
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -141,6 +162,10 @@ namespace Collection.Controllers.User
 
 
         [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
         {
             try
@@ -150,7 +175,7 @@ namespace Collection.Controllers.User
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {

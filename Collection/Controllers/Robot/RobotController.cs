@@ -19,6 +19,10 @@ namespace Collection.Controllers.Robot
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
         {
             try
@@ -37,6 +41,10 @@ namespace Collection.Controllers.Robot
         }
 
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken ct=default)
         {
             try
@@ -46,7 +54,7 @@ namespace Collection.Controllers.Robot
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -59,6 +67,10 @@ namespace Collection.Controllers.Robot
         }
 
         [HttpGet("{id:guid}/telemetry")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetWithTelemetry(Guid id, CancellationToken ct = default)
         {
             try
@@ -68,7 +80,7 @@ namespace Collection.Controllers.Robot
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -81,6 +93,10 @@ namespace Collection.Controllers.Robot
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(
             Guid hubId,
             RobotRequestDTO request,
@@ -102,6 +118,10 @@ namespace Collection.Controllers.Robot
         }
 
         [HttpPut("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(
             Guid id,
             RobotUpdateDTO update,
@@ -114,7 +134,7 @@ namespace Collection.Controllers.Robot
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -127,6 +147,10 @@ namespace Collection.Controllers.Robot
         }
 
         [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct = default)
         {
             try
@@ -136,7 +160,7 @@ namespace Collection.Controllers.Robot
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {

@@ -16,6 +16,10 @@ namespace Collection.Controllers.RobotTelemetry
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
         {
             try
@@ -34,6 +38,10 @@ namespace Collection.Controllers.RobotTelemetry
         }
 
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken ct = default)
         {
             try
@@ -43,7 +51,7 @@ namespace Collection.Controllers.RobotTelemetry
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -56,6 +64,10 @@ namespace Collection.Controllers.RobotTelemetry
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(
             Guid robotId,
             RobotTelemetryRequestDTO request,
@@ -64,7 +76,7 @@ namespace Collection.Controllers.RobotTelemetry
             try
             { 
                 await _robTelemService.CreateAsync(request, robotId, ct);
-                return Ok();
+                return Accepted();
             }
             catch (OperationCanceledException ex)
             {
@@ -77,6 +89,10 @@ namespace Collection.Controllers.RobotTelemetry
         }
 
         [HttpPut("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(
             Guid id,
             RobotTelemetryUpdateDTO update,
@@ -85,11 +101,11 @@ namespace Collection.Controllers.RobotTelemetry
             try
             {
                 await _robTelemService.UpdateAsync(id, update, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -102,6 +118,10 @@ namespace Collection.Controllers.RobotTelemetry
         }
 
         [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct = default)
         {
             try
@@ -111,7 +131,7 @@ namespace Collection.Controllers.RobotTelemetry
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {

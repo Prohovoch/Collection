@@ -6,6 +6,7 @@ namespace Collection.Controllers.DeviceTelemetry
 {
     [Route("api/device/{deviceId:guid}/telemetry")]
     [ApiController]
+    
     public class DeviceTelemetryController : ControllerBase
     {
         private readonly IDeviceTelemetryService _devTelemService;
@@ -16,6 +17,9 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
         {
             try
@@ -34,6 +38,9 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken ct = default)
         {
             try
@@ -56,6 +63,9 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(
             Guid deviceId,
             DeviceTelemetryRequestDTO request,
@@ -77,6 +87,11 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpPut("{id:guid}")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(
             Guid id,
             DeviceTelemtryUpdateDTO update,
@@ -89,7 +104,7 @@ namespace Collection.Controllers.DeviceTelemetry
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
@@ -102,6 +117,11 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpDelete("{id:guid}")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
         {
             try
@@ -111,7 +131,7 @@ namespace Collection.Controllers.DeviceTelemetry
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (OperationCanceledException ex)
             {
