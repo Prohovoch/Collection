@@ -17,7 +17,7 @@ namespace Collection.Service.Robot
             _robotRepository = robotRepository;
         }
 
-        public async Task<ImmutableArray<RobotResponseDTO>> GetAllAsync(CancellationToken ct)
+        public async Task<ImmutableArray<RobotResponseDTO>> GetAllAsync(CancellationToken ct = default)
         {
             var robots = await _robotRepository.GetAllAsync(ct);
             return [.. robots.Select(r => new RobotResponseDTO
@@ -28,7 +28,7 @@ namespace Collection.Service.Robot
             })];
         }
 
-        public async Task<RobotResponseDTO> GetByIdAsync(Guid id, CancellationToken ct)
+        public async Task<RobotResponseDTO> GetByIdAsync(Guid id, CancellationToken ct = default)
         {
             var robot = await _robotRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Robot {id} not found");
             return new RobotResponseDTO
@@ -39,7 +39,7 @@ namespace Collection.Service.Robot
             };
         }
 
-        public async Task<RobotResponseExtraDTO> GetByIdWithTelemAsync(Guid id, CancellationToken ct)
+        public async Task<RobotResponseExtraDTO> GetByIdWithTelemAsync(Guid id, CancellationToken ct = default)
         {
             var robot = await _robotRepository.GetByIdTelemAsync(id, ct) ?? throw new KeyNotFoundException($"Robot {id} not found");
             return new RobotResponseExtraDTO
@@ -63,7 +63,7 @@ namespace Collection.Service.Robot
             };
         }
 
-        public async Task CreateRobot(RobotRequestDTO request, Guid hubId, CancellationToken ct)
+        public async Task CreateRobot(RobotRequestDTO request, Guid hubId, CancellationToken ct = default)
         {
             var entity = new RobotEntity
             {
@@ -75,7 +75,7 @@ namespace Collection.Service.Robot
             await _robotRepository.SaveChangesAsync(ct);
         }
 
-        public async Task UpdateRobot(Guid id, RobotUpdateDTO update, CancellationToken ct)
+        public async Task UpdateRobot(Guid id, RobotUpdateDTO update, CancellationToken ct = default)
         {
             var robot = await _robotRepository.GetByIdAsync(id) ?? throw new KeyNotFoundException($"Robot {id} not found");
             robot.DevAlias = update.DevAlias;
@@ -84,7 +84,7 @@ namespace Collection.Service.Robot
 
         }
 
-        public async Task DeleteRobot(Guid id, CancellationToken ct)
+        public async Task DeleteRobot(Guid id, CancellationToken ct = default)
         {
 
             var affected = await _robotRepository.DeleteRobotAsync(id, ct);

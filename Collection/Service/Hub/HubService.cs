@@ -19,7 +19,7 @@ namespace Collection.Service.Hub
             _hubRepository = hubRepository;
         }
 
-        public async Task<ImmutableArray<HubResponseDTO>> GetAllAsync(CancellationToken ct)
+        public async Task<ImmutableArray<HubResponseDTO>> GetAllAsync(CancellationToken ct = default)
         {
             var hubs = await _hubRepository.GetAllAsync(ct);
             return [.. hubs.Select(h => new HubResponseDTO
@@ -31,7 +31,7 @@ namespace Collection.Service.Hub
             })];
         }
 
-        public async Task<HubResponseDTO> GetByIdAsync(Guid id, CancellationToken ct)
+        public async Task<HubResponseDTO> GetByIdAsync(Guid id, CancellationToken ct = default)
         {
             var hub = await _hubRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Hub {id} not found");
             return new HubResponseDTO
@@ -43,7 +43,7 @@ namespace Collection.Service.Hub
             };
         }
 
-        public async Task<HubResponseExtraDTO> GetByIdWithDevicesRobotsAsync(Guid id, CancellationToken ct)
+        public async Task<HubResponseExtraDTO> GetByIdWithDevicesRobotsAsync(Guid id, CancellationToken ct = default)
         {
             var hub = await _hubRepository.GetByIdRobDevAsync(id, ct);
             if (hub is null)
@@ -70,7 +70,7 @@ namespace Collection.Service.Hub
             };
         }
 
-        public async Task CreateHub(HubRequestDTO request, Guid userId, CancellationToken ct)
+        public async Task CreateHub(HubRequestDTO request, Guid userId, CancellationToken ct = default)
         {
             var entity = new HubEntity
             {
@@ -83,7 +83,7 @@ namespace Collection.Service.Hub
             await _hubRepository.SaveChangesAsync(ct);
         }
 
-        public async Task UpdateHub(Guid id, HubUpdateDTO update, CancellationToken ct)
+        public async Task UpdateHub(Guid id, HubUpdateDTO update, CancellationToken ct = default)
         {
             var hub = await _hubRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Hub {id} not found");
             hub.HubAlias = update.HubAlias;
@@ -96,7 +96,7 @@ namespace Collection.Service.Hub
 
         }
 
-        public async Task DeleteHub(Guid id, CancellationToken ct)
+        public async Task DeleteHub(Guid id, CancellationToken ct = default)
         {
 
             var affected = await _hubRepository.DeleteHubAsync(id, ct);
