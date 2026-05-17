@@ -5,7 +5,7 @@ using Collection.DTO.RobotTelemetry;
 
 namespace Collection.Service.RobotTelemetry
 {
-    public class RobotTelemetryService
+    public class RobotTelemetryService:IRobotTelemetryService
     {
         private readonly IRobotTelemetry _robTelemRepository;
 
