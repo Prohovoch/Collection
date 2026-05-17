@@ -18,7 +18,7 @@ namespace Collection.Models.User
 
         // 1 : m relations
         public List<HubEntity> Hubs { get; } = new List<HubEntity>();
-;
+
     }
 }
 

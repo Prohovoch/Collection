@@ -1,5 +1,5 @@
 ﻿using Collection.Models.Hub;
-using IoT.Persistence;
+using Collection.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Repository.Hub
@@ -22,6 +22,7 @@ namespace Collection.Repository.Hub
             .Include(h => h.Devices)
             .Include(h => h.Robots)
             .AsSplitQuery()
+            .AsNoTracking()
             .FirstOrDefaultAsync(h => h.Id == id, ct);
 
         public async Task<IReadOnlyCollection<HubEntity>> GetAllAsync(CancellationToken ct = default) =>

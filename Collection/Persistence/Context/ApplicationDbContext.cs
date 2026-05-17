@@ -5,7 +5,7 @@ using Collection.Models.Robot;
 using Collection.Models.RobotTelemetry;
 using Collection.Models.User;
 using Microsoft.EntityFrameworkCore;
-namespace IoT.Persistence
+namespace Collection.Persistence
 
 {
     public class ApplicationDbContext : DbContext

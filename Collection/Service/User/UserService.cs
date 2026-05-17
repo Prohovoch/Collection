@@ -34,11 +34,7 @@ namespace Collection.Service.User
         // GET BY ID
         public async Task<UserResponseDTO> GetUserById(Guid id, CancellationToken ct = default)
         {
-            var user = await _userRepository.GetByIdAsync(id, ct);
-
-            if (user is null)
-                throw new KeyNotFoundException($"User {id} not found");
-
+            var user = await _userRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"User {id} not found");
             return new UserResponseDTO
             {
                 Id = user.Id,
@@ -51,11 +47,7 @@ namespace Collection.Service.User
         // GET WITH HUBS
         public async Task<UserResponseHubsDTO> GetUserWithHubs(Guid id, CancellationToken ct = default)
         {
-            var user = await _userRepository.GetByIdWithHubsAsync(id, ct);
-
-            if (user is null)
-                throw new KeyNotFoundException($"User {id} not found");
-
+            var user = await _userRepository.GetByIdWithHubsAsync(id, ct) ?? throw new KeyNotFoundException($"User {id} not found");
             return new UserResponseHubsDTO
             {
                 Id = user.Id,
@@ -97,11 +89,7 @@ namespace Collection.Service.User
         // PUT — полное обновление
         public async Task UpdateUser(UserUpdateDTO dto, CancellationToken ct)
         {
-            var user = await _userRepository.GetByIdAsync(dto.Id, ct);
-
-            if (user is null)
-                throw new KeyNotFoundException($"User {dto.Id} not found");
-
+            var user = await _userRepository.GetByIdAsync(dto.Id, ct) ?? throw new KeyNotFoundException($"User {dto.Id} not found");
             user.Name = dto.Name;
             user.Surname = dto.Surname;
             user.Age = dto.Age;
@@ -113,11 +101,7 @@ namespace Collection.Service.User
         // PATCH — частичное обновление
         public async Task UpdatePatch(Guid id, UserPatchDTO patch, CancellationToken ct = default)
         {
-            var user = await _userRepository.GetByIdAsync(id, ct);
-
-            if (user is null)
-                throw new KeyNotFoundException($"User {id} not found");
-
+            var user = await _userRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"User {id} not found");
             if (patch.Name is not null)
                 user.Name = patch.Name;
 

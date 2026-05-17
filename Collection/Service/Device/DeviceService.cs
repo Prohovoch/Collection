@@ -7,6 +7,8 @@ using Collection.Models.DeviceTelemetry;
 
 namespace Collection.Service.Device
 {
+    // Service реализует логику работы с бд, проводит создание проекций, возвращает и выдает запросы.
+    // Для полноты картины можно было бы выделить маппинг в отдельную категорию папок. Но из за ограничений сделал посабление по данному поводу.
     public class DeviceService:IDeviceService
     {
         private readonly IDeviceRepository _deviceRepository;
@@ -19,20 +21,17 @@ namespace Collection.Service.Device
         public async Task<ImmutableArray<DeviceResponseDTO>> GetAllAsync(CancellationToken ct = default)
         {
             var devices = await _deviceRepository.GetAllAsync(ct);
-            return devices.Select(d => new DeviceResponseDTO
+            return [.. devices.Select(d => new DeviceResponseDTO
             {
                 Id = d.Id,
                 DevAlias = d.DevAlias,
                 HubId = d.HubId
-            }).ToImmutableArray();
+            })];
         }
 
         public async Task<DeviceResponseDTO> GetByIdAsync(Guid id, CancellationToken ct = default)
         {
-            var device = await _deviceRepository.GetByIdAsync(id, ct);
-            if (device is null)
-                throw new KeyNotFoundException($"Device {id} not found");
-
+            var device = await _deviceRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Device {id} not found");
             return new DeviceResponseDTO
             {
                 Id = device.Id,
@@ -43,10 +42,7 @@ namespace Collection.Service.Device
 
         public async Task<DeviceResponseExtraDTO> GetByIdWithTelemAsync(Guid id, CancellationToken ct = default)
         {
-            var device = await _deviceRepository.GetByIdTelemAsync(id, ct);
-            if (device is null)
-                throw new KeyNotFoundException($"Device {id} not found");
-
+            var device = await _deviceRepository.GetByIdTelemAsync(id, ct) ?? throw new KeyNotFoundException($"Device {id} not found");
             return new DeviceResponseExtraDTO
             {
                 Id = device.Id,
@@ -82,10 +78,7 @@ namespace Collection.Service.Device
 
         public async Task UpdateDevice(Guid id, DeviceUpdateDTO update, CancellationToken ct = default)
         {
-            var device = await _deviceRepository.GetByIdAsync(id, ct);
-            if (device is null)
-                throw new KeyNotFoundException($"Device {id} not found");
-
+            var device = await _deviceRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Device {id} not found");
             device.DevAlias = update.DevAlias;
 
             await _deviceRepository.UpdateDeviceData(id, device);

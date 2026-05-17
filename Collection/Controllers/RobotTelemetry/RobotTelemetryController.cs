@@ -62,7 +62,7 @@ namespace Collection.Controllers.RobotTelemetry
             CancellationToken ct = default)
             {
             try
-            {
+            { 
                 await _robTelemService.CreateAsync(request, robotId, ct);
                 return Ok();
             }
@@ -76,7 +76,7 @@ namespace Collection.Controllers.RobotTelemetry
             }
         }
 
-        [HttpPatch("{id:guid}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(
             Guid id,
             RobotTelemetryUpdateDTO update,
@@ -95,7 +95,7 @@ namespace Collection.Controllers.RobotTelemetry
             {
                 return StatusCode(499, ex.Message);
             }
-            catch (Exception ex)
+            catch (Va ex)
             {
                 return StatusCode(500, ex.Message);
             }

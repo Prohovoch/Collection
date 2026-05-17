@@ -16,7 +16,7 @@ namespace Collection.Service.DeviceTelemetry
         public async Task<ImmutableArray<DeviceTelemetryResponseDTO>> GetAllAsync(CancellationToken ct = default)
         {
             var telemetries = await _telemRepository.GetAllAsync(ct);
-            return telemetries.Select(t => new DeviceTelemetryResponseDTO
+            return [.. telemetries.Select(t => new DeviceTelemetryResponseDTO
             {
                 Id = t.Id,
                 DeviceId = t.DeviceId,
@@ -25,15 +25,12 @@ namespace Collection.Service.DeviceTelemetry
                 Press = t.Pressure,
                 BattLevel = t.BatteryLevel,
                 Status = t.Status
-            }).ToImmutableArray();
+            })];
         }
 
         public async Task<DeviceTelemetryResponseDTO> GetByIdAsync(Guid id, CancellationToken ct = default)
         {
-            var telemetry = await _telemRepository.GetByIdAsync(id, ct);
-            if (telemetry is null)
-                throw new KeyNotFoundException($"Telemetry {id} not found");
-
+            var telemetry = await _telemRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Telemetry {id} not found");
             return new DeviceTelemetryResponseDTO
             {
                 Id = telemetry.Id,
@@ -69,11 +66,7 @@ namespace Collection.Service.DeviceTelemetry
 
         public async Task UpdateAsync(Guid id, DeviceTelemtryUpdateDTO update, CancellationToken ct = default)
         {
-            var telemetry = await _telemRepository.GetByIdAsync(id, ct);
-            if (telemetry is null)
-                throw new KeyNotFoundException($"Telemetry {id} not found");
-
-        
+            var telemetry = await _telemRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Telemetry {id} not found");
             telemetry.Tempreature = update.Temp;
             telemetry.Pressure = update.Press;
             telemetry.BatteryLevel = update.BattLevel;

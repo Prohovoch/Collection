@@ -1,11 +1,13 @@
 ﻿using Collection.Models.Robot;
 using Collection.Repository.Robot;
 using Collection.DTO.Robot;
-using Collection.DTO.RobotTelemetry
+using Collection.DTO.RobotTelemetry;
 
 using System.Collections.Immutable;
 namespace Collection.Service.Robot
 {
+    // Service реализует логику работы с бд, проводит создание проекций, возвращает и выдает запросы.
+    // Для полноты картины можно было бы выделить маппинг в отдельную категорию папок. Но из за ограничений сделал посабление по данному поводу.
     public class RobotService:IRobotService
     {
         private readonly IRobotRepository _robotRepository;
@@ -28,10 +30,7 @@ namespace Collection.Service.Robot
 
         public async Task<RobotResponseDTO> GetByIdAsync(Guid id, CancellationToken ct)
         {
-            var robot = await _robotRepository.GetByIdAsync(id, ct);
-            if (robot is null)
-                throw new KeyNotFoundException($"Robot {id} not found");
-
+            var robot = await _robotRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Robot {id} not found");
             return new RobotResponseDTO
             {
                 Id = robot.Id,
@@ -42,10 +41,7 @@ namespace Collection.Service.Robot
 
         public async Task<RobotResponseExtraDTO> GetByIdWithTelemAsync(Guid id, CancellationToken ct)
         {
-            var robot = await _robotRepository.GetByIdTelemAsync(id, ct);
-            if (robot is null)
-                throw new KeyNotFoundException($"Robot {id} not found");
-
+            var robot = await _robotRepository.GetByIdTelemAsync(id, ct) ?? throw new KeyNotFoundException($"Robot {id} not found");
             return new RobotResponseExtraDTO
             {
                 Id = robot.Id,
@@ -81,10 +77,7 @@ namespace Collection.Service.Robot
 
         public async Task UpdateRobot(Guid id, RobotUpdateDTO update, CancellationToken ct)
         {
-            var robot = await _robotRepository.GetByIdAsync(id);
-            if (robot is null)
-                throw new KeyNotFoundException($"Robot {id} not found");
-
+            var robot = await _robotRepository.GetByIdAsync(id) ?? throw new KeyNotFoundException($"Robot {id} not found");
             robot.DevAlias = update.DevAlias;
 
             await _robotRepository.UpdateRobotData(id, robot, ct);
