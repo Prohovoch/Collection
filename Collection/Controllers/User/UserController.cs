@@ -16,7 +16,6 @@ namespace Collection.Controllers.User
         }
 
         [HttpGet]
-      
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -134,11 +133,12 @@ namespace Collection.Controllers.User
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpPatch("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPatch("{id:guid}")]
+     
         public async Task<IActionResult> Patch(Guid id, UserPatchDTO patch, CancellationToken ct)
         {
             try

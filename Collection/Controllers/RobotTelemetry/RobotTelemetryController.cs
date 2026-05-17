@@ -17,7 +17,6 @@ namespace Collection.Controllers.RobotTelemetry
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
@@ -65,7 +64,6 @@ namespace Collection.Controllers.RobotTelemetry
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(

@@ -16,7 +16,6 @@ namespace Collection.Controllers.Hub
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-       
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)

@@ -87,7 +87,7 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpPut("{id:guid}")]
-        [HttpPost]
+        
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
@@ -117,7 +117,7 @@ namespace Collection.Controllers.DeviceTelemetry
         }
 
         [HttpDelete("{id:guid}")]
-        [HttpPost]
+        
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
