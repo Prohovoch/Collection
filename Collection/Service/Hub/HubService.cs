@@ -89,9 +89,8 @@ namespace Collection.Service.Hub
             var hub = await _hubRepository.GetByIdAsync(id, ct);
             if (hub is null)
                 throw new KeyNotFoundException($"Hub {id} not found");
-
-            if (update.HubAlias is not null)
-                hub.HubAlias = update.HubAlias;
+            
+            hub.HubAlias = update.HubAlias;
 
             
                
