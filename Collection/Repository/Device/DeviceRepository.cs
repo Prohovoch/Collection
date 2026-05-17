@@ -1,5 +1,5 @@
 ﻿using Collection.Models.Device;
-using IoT.Persistence;
+using Collection.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Repository.Device
@@ -15,7 +15,7 @@ namespace Collection.Repository.Device
         }
 
         public async Task<IReadOnlyCollection<DeviceEntity>> GetAllAsync(CancellationToken ct = default) =>
-            await _context.Devices.AsNoTracking().ToListAsync(ct);
+            await _context.Devices.AsNoTracking().ToArrayAsync(ct);
 
 
         public async Task<DeviceEntity?> GetByIdAsync(Guid id, CancellationToken ct = default) =>

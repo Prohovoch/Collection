@@ -1,5 +1,5 @@
 ﻿using Collection.Models.DeviceTelemetry;
-using IoT.Persistence;
+using Collection.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Repository.DeviceTelemetry
@@ -36,4 +36,4 @@ namespace Collection.Repository.DeviceTelemetry
         public async Task SaveChangesAsync(CancellationToken ct = default) => await _context.SaveChangesAsync(ct);
     }
 }
-}
+

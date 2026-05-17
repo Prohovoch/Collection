@@ -8,6 +8,8 @@ using Collection.DTO.Device;
 using System.Collections.Immutable;
 namespace Collection.Service.Hub
 {
+    // Service реализует логику работы с бд, проводит создание проекций, возвращает и выдает запросы.
+    // Для полноты картины можно было бы выделить маппинг в отдельную категорию папок. Но из за ограничений сделал посабление по данному поводу.
     public class HubService:IHubService
     {
         private readonly IHubRepository _hubRepository;
@@ -31,10 +33,7 @@ namespace Collection.Service.Hub
 
         public async Task<HubResponseDTO> GetByIdAsync(Guid id, CancellationToken ct)
         {
-            var hub = await _hubRepository.GetByIdAsync(id, ct);
-            if (hub is null)
-                throw new KeyNotFoundException($"Hub {id} not found");
-
+            var hub = await _hubRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Hub {id} not found");
             return new HubResponseDTO
             {
                 Id = hub.Id,
@@ -86,10 +85,7 @@ namespace Collection.Service.Hub
 
         public async Task UpdateHub(Guid id, HubUpdateDTO update, CancellationToken ct)
         {
-            var hub = await _hubRepository.GetByIdAsync(id, ct);
-            if (hub is null)
-                throw new KeyNotFoundException($"Hub {id} not found");
-            
+            var hub = await _hubRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Hub {id} not found");
             hub.HubAlias = update.HubAlias;
 
             

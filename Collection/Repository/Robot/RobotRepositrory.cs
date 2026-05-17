@@ -1,5 +1,5 @@
 ﻿using Collection.Models.Robot;
-using IoT.Persistence;
+using Collection.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Repository.Robot

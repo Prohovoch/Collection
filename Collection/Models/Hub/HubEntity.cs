@@ -11,7 +11,7 @@ namespace Collection.Models.Hub
          */
         public Guid Id { get; set; } = Guid.CreateVersion7();
         public Guid UserId { get; set; }
-        public bool HubIsActive { get; set; }
+        public bool? HubIsActive { get; set; } = null;
 
         public string? HubAlias { get; set; }
         

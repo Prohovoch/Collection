@@ -5,6 +5,8 @@ using Collection.DTO.RobotTelemetry;
 
 namespace Collection.Service.RobotTelemetry
 {
+    // Service реализует логику работы с бд, проводит создание проекций, возвращает и выдает запросы.
+    // Для полноты картины можно было бы выделить маппинг в отдельную категорию папок. Но из за ограничений сделал посабление по данному поводу.
     public class RobotTelemetryService:IRobotTelemetryService
     {
         private readonly IRobotTelemetry _robTelemRepository;
@@ -32,10 +34,7 @@ namespace Collection.Service.RobotTelemetry
 
         public async Task<RobotTelemetryResponseDTO> GetByIdAsync(Guid id, CancellationToken ct = default)
         {
-            var telemetry = await _robTelemRepository.GetByIdAsync(id, ct);
-            if (telemetry is null)
-                throw new KeyNotFoundException($"Telemetry {id} not found");
-
+            var telemetry = await _robTelemRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Telemetry {id} not found");
             return new RobotTelemetryResponseDTO
             {
                 Id = telemetry.Id,
@@ -73,11 +72,7 @@ namespace Collection.Service.RobotTelemetry
 
         public async Task UpdateAsync(Guid id, RobotTelemetryUpdateDTO update, CancellationToken ct = default)
         {
-            var telemetry = await _robTelemRepository.GetByIdAsync(id, ct);
-            if (telemetry is null)
-                throw new KeyNotFoundException($"Telemetry {id} not found");
-
-          
+            var telemetry = await _robTelemRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Telemetry {id} not found");
             telemetry.DevType = update.RobotType;
             telemetry.Status = update.Status;
             telemetry.PositionX = update.PosX;

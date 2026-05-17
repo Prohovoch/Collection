@@ -76,7 +76,7 @@ namespace Collection.Controllers.DeviceTelemetry
             }
         }
 
-        [HttpPatch("{id:guid}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(
             Guid id,
             DeviceTelemtryUpdateDTO update,

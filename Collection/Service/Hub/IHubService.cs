@@ -12,4 +12,4 @@ namespace Collection.Service.Hub
         Task DeleteHub(Guid id, CancellationToken ct = default);
     }
 }
-}
+
