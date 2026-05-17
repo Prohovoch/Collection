@@ -18,7 +18,6 @@ namespace Collection.Controllers.DeviceTelemetry
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
         {
@@ -27,10 +26,7 @@ namespace Collection.Controllers.DeviceTelemetry
                 var result = await _devTelemService.GetAllAsync(ct);
                 return Ok(result);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+            
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -39,7 +35,7 @@ namespace Collection.Controllers.DeviceTelemetry
 
         [HttpGet("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
+        
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken ct = default)
         {
@@ -52,10 +48,7 @@ namespace Collection.Controllers.DeviceTelemetry
             {
                 return NotFound(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+          
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -64,7 +57,6 @@ namespace Collection.Controllers.DeviceTelemetry
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(
             Guid deviceId,
@@ -76,10 +68,7 @@ namespace Collection.Controllers.DeviceTelemetry
                 await _devTelemService.CreateAsync(request, deviceId, ct);
                 return Accepted();
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+          
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -90,12 +79,11 @@ namespace Collection.Controllers.DeviceTelemetry
         
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(
             Guid id,
             DeviceTelemtryUpdateDTO update,
-            CancellationToken ct)
+            CancellationToken ct = default)
         {
             try
             {
@@ -106,10 +94,7 @@ namespace Collection.Controllers.DeviceTelemetry
             {
                 return BadRequest(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+            
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -120,7 +105,6 @@ namespace Collection.Controllers.DeviceTelemetry
         
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
         {
@@ -133,10 +117,7 @@ namespace Collection.Controllers.DeviceTelemetry
             {
                 return BadRequest(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+         
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);

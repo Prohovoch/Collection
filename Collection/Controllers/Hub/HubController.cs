@@ -16,7 +16,6 @@ namespace Collection.Controllers.Hub
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll(CancellationToken ct = default)
         {
@@ -25,10 +24,7 @@ namespace Collection.Controllers.Hub
                 var result = await _hubService.GetAllAsync(ct);
                 return Ok(result);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+         
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -38,7 +34,6 @@ namespace Collection.Controllers.Hub
         [HttpGet("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken ct = default)
         {
@@ -51,10 +46,7 @@ namespace Collection.Controllers.Hub
             {
                 return BadRequest(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+          
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -63,7 +55,6 @@ namespace Collection.Controllers.Hub
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id:guid}/devices-robots")]
         public async Task<IActionResult> GetWithDevicesRobots(Guid id, CancellationToken ct = default)
@@ -77,10 +68,7 @@ namespace Collection.Controllers.Hub
             {
                 return BadRequest(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+          
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -89,22 +77,18 @@ namespace Collection.Controllers.Hub
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(
             Guid userId,
             HubRequestDTO request,
-            CancellationToken ct)
+            CancellationToken ct = default)
         {
             try
             {
                 await _hubService.CreateHub(request, userId, ct);
                 return Accepted();
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+         
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -114,7 +98,6 @@ namespace Collection.Controllers.Hub
         [HttpPut("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(
             Guid id,
@@ -130,10 +113,7 @@ namespace Collection.Controllers.Hub
             {
                 return BadRequest(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+         
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
@@ -143,7 +123,6 @@ namespace Collection.Controllers.Hub
         [HttpDelete("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct = default)
         {
@@ -156,10 +135,7 @@ namespace Collection.Controllers.Hub
             {
                 return BadRequest(ex.Message);
             }
-            catch (OperationCanceledException ex)
-            {
-                return StatusCode(499, ex.Message);
-            }
+       
             catch (Exception ex)
 
 
