@@ -95,7 +95,7 @@ namespace Collection.Controllers.RobotTelemetry
             {
                 return StatusCode(499, ex.Message);
             }
-            catch (Va ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

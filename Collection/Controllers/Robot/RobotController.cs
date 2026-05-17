@@ -89,7 +89,7 @@ namespace Collection.Controllers.Robot
             try
             {
                 await _robotService.CreateRobot(request, hubId, ct);
-                return Ok();
+                return Accepted();
             }
             catch (OperationCanceledException ex)
             {
@@ -110,7 +110,7 @@ namespace Collection.Controllers.Robot
             try
             {
                 await _robotService.UpdateRobot(id, update, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {

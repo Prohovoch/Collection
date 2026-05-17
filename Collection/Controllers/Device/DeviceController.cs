@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Collection.DTO.Device;
 namespace Collection.Controllers.Device
 {
-    [Route("api/api/hubs/{hubId:guid}/device")]
+    [Route("api/hubs/{hubId:guid}/device")]
     [ApiController]
     public class DeviceController : ControllerBase
     {
@@ -86,7 +86,7 @@ namespace Collection.Controllers.Device
             try
             {
                 await _deviceService.CreateDevice(request, hubId, ct);
-                return Ok();
+                return Accepted();
             }
             catch (OperationCanceledException ex)
             {
@@ -107,7 +107,7 @@ namespace Collection.Controllers.Device
             try
             {
                 await _deviceService.UpdateDevice(id, update, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {

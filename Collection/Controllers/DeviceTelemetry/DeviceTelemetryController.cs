@@ -64,7 +64,7 @@ namespace Collection.Controllers.DeviceTelemetry
             try
             {
                 await _devTelemService.CreateAsync(request, deviceId, ct);
-                return Ok();
+                return Accepted();
             }
             catch (OperationCanceledException ex)
             {
@@ -85,7 +85,7 @@ namespace Collection.Controllers.DeviceTelemetry
             try
             {
                 await _devTelemService.UpdateAsync(id, update, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {

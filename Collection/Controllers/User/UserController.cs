@@ -83,7 +83,7 @@ namespace Collection.Controllers.User
             try
             {
                 await _userService.UserCreate(creation, ct);
-                return Ok();
+                return Accepted();
             }
             catch (OperationCanceledException ex)
             {
@@ -101,7 +101,7 @@ namespace Collection.Controllers.User
             try
             {
                 await _userService.UpdateUser(update, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {
@@ -123,7 +123,7 @@ namespace Collection.Controllers.User
             try
             {
                 await _userService.UpdatePatch(id, patch, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {

@@ -85,7 +85,7 @@ namespace Collection.Controllers.Hub
             try
             {
                 await _hubService.CreateHub(request, userId, ct);
-                return Ok();
+                return Accepted();
             }
             catch (OperationCanceledException ex)
             {
@@ -106,7 +106,7 @@ namespace Collection.Controllers.Hub
             try
             {
                 await _hubService.UpdateHub(id, update, ct);
-                return Ok();
+                return NoContent();
             }
             catch (KeyNotFoundException ex)
             {
