@@ -58,7 +58,8 @@ namespace Collection.Service.User
                 {
                     Id = h.Id,
                     HubAlias = h.HubAlias,
-                    IsActive = h.HubIsActive
+                    IsActive = h.HubIsActive,
+                    UserId = h.UserId
                 }).ToImmutableArray()
             };
         }
