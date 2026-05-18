@@ -101,7 +101,7 @@ namespace Collection.Controllers.User
         {
             try
             {
-                await _userService.UpdateUser(update, ct);
+                await _userService.UpdateUser(id, update, ct);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
