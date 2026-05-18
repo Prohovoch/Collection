@@ -86,12 +86,9 @@ namespace Collection.Service.Hub
         public async Task UpdateHub(Guid id, HubUpdateDTO update, CancellationToken ct = default)
         {
             var hub = await _hubRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Hub {id} not found");
+           
             hub.HubAlias = update.HubAlias;
             hub.HubIsActive = update.IsActive;
-
-            
-               
-
             await _hubRepository.UpdateHubData(id, hub, ct);
 
         }

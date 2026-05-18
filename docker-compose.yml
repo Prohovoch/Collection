@@ -4,3 +4,18 @@ services:
     build:
       context: .
       dockerfile: Collection/Dockerfile
+    ports:
+      - "8082:8080"
+      - "8083:8081"
+    environment:
+      - ConnectionStrings__Default=Host=${DB_HOST};Port=${DB_PORT};Database=${POSTGRES_DB};Username=${POSTGRES_USERNAME};Password=${POSTGRES_PASSWORD}
+    networks:
+      - ethernet_network
+
+ 
+
+
+
+networks:
+  ethernet_network:
+    external: true

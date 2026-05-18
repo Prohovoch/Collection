@@ -7,20 +7,20 @@ namespace Collection.DTO.RobotTelemetry
     public class RobotTelemetryUpdateDTO
     {
         [Required]
-        [MaxLength(50, ErrorMessage = "More than 50 chars")]
-        public string RobotType { get; set; } = null!;
+        [MinLength(5, ErrorMessage = "Not less than 5 chars"), MaxLength(50, ErrorMessage = "More than 50 chars")]
+        public string RobotType { get; init; } = null!;
         [Required]
-        [MaxLength(50, ErrorMessage = "More than 50 chars")]
-        public string Status { get; set; } = null!;
+        [MinLength(5, ErrorMessage = "Not less than 5 chars"), MaxLength(50, ErrorMessage = "More than 50 chars")]
+        public string Status { get; init; } = null!;
         [Required]
-        public int PosX { get; set; }
+        public int PosX { get; init; }
         [Required]
-        public int PosY { get; set; }
+        public int PosY { get; init; }
         [Required]
         [Range(0, 100, ErrorMessage ="Must be between 0 and 100")]
-        public int Battery { get; set; }
+        public int Battery { get; init; }
         [Required]
-        public float Speed { get; set; }
+        public float Speed { get; init; }
 
     }
 }

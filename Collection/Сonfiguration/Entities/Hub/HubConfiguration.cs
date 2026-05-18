@@ -30,7 +30,7 @@ namespace Collection.Сonfiguration.Entities.Hub
 
             builder.Property(h => h.HubAlias).HasMaxLength(50).HasColumnName("hub_alias");
 
-            builder.Property(h => h.HubIsActive).HasColumnName("hub_isActive");
+            builder.Property(h => h.HubIsActive).HasColumnName("hub_isactive");
         }
     }
     

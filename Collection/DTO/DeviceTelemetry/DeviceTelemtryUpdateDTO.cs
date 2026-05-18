@@ -12,7 +12,7 @@ namespace Collection.DTO.DeviceTelemetry
         [Range(0, 100, ErrorMessage ="Value must be between 0 and 100")]
         public int BattLevel { get; set; }
         [Required]
-        [MaxLength(50, ErrorMessage ="More than 50 chars")]
+        [MinLength(5, ErrorMessage ="Not less than 5 chars"),MaxLength(50, ErrorMessage ="More than 50 chars")]
         public string Status { get; set; } = null!;
 
     }

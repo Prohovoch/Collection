@@ -6,6 +6,6 @@ namespace Collection.DTO.Robot
     {
         [Required]
         [MaxLength(50, ErrorMessage ="More than 50 chars")]
-        public string DevAlias { get; set; } = null!;
+        public string DevAlias { get;  init; } = null!;
     }
 }

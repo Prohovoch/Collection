@@ -64,7 +64,7 @@ namespace Collection.Service.User
         }
 
         // CREATE
-        public async Task UserCreate(UserRequestDTO creation, CancellationToken ct = default)
+        public async Task  UserCreate(UserRequestDTO creation, CancellationToken ct = default)
         {
             var entity = new UserEntity
             {
@@ -75,6 +75,7 @@ namespace Collection.Service.User
 
             _userRepository.CreateUser(entity);
             await _userRepository.SaveChangesAsync(ct);
+
         }
 
         // DELETE
@@ -87,14 +88,14 @@ namespace Collection.Service.User
         }
 
         // PUT — полное обновление
-        public async Task UpdateUser(UserUpdateDTO dto, CancellationToken ct)
+        public async Task UpdateUser(Guid Id, UserUpdateDTO dto, CancellationToken ct = default)
         {
-            var user = await _userRepository.GetByIdAsync(dto.Id, ct) ?? throw new KeyNotFoundException($"User {dto.Id} not found");
+            var user = await _userRepository.GetByIdAsync(Id, ct) ?? throw new KeyNotFoundException($"User {Id} not found");
             user.Name = dto.Name;
             user.Surname = dto.Surname;
             user.Age = dto.Age;
 
-            await _userRepository.UpdateUserData(dto.Id, user, ct);
+            await _userRepository.UpdateUserData(Id, user, ct);
 
         }
 

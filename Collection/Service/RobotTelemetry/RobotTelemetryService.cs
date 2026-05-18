@@ -73,6 +73,7 @@ namespace Collection.Service.RobotTelemetry
         public async Task UpdateAsync(Guid id, RobotTelemetryUpdateDTO update, CancellationToken ct = default)
         {
             var telemetry = await _robTelemRepository.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException($"Telemetry {id} not found");
+           
             telemetry.DevType = update.RobotType;
             telemetry.Status = update.Status;
             telemetry.PositionX = update.PosX;

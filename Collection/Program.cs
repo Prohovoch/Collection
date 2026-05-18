@@ -16,6 +16,8 @@ using Collection.Repository.Hub;
 
 namespace Collection
 {
+    // Сервисы помечены как scoped, так как живут при каждом отдельном запросе. А также потому что идет использование DBContext.
+    // Db context не потоко безопасен, поэтому если бы мы имели singleton инстанс , то тогда бы было бы очень плохо.
     public class Program
     {
         public static void Main(string[] args)

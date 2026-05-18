@@ -1,5 +1,4 @@
 ﻿using Collection.DTO.RobotTelemetry;
-using System.Collections.Immutable;
 namespace Collection.DTO.Robot
 {
     public class RobotResponseDTO
