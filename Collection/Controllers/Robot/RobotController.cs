@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Collection.DTO.Robot;
 namespace Collection.Controllers.Robot
 {
-    [Route("api/hubs/{hubId:guid}/robot")]
+    [Route("api/hub/{hubId:guid}/robot")]
     [ApiController]
     public class RobotController : ControllerBase
     {

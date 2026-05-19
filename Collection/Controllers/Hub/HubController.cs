@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Collection.DTO.Hub;
 namespace Collection.Controllers.Hub
 {
-    [Route("api/users/{userId:guid}/hub")]
+    [Route("api/user/{userId:guid}/hub")]
     [ApiController]
     public class HubController : ControllerBase
     {

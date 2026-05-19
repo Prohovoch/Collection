@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Collection.DTO.Device;
 namespace Collection.Controllers.Device
 {
-    [Route("api/hubs/{hubId:guid}/device")]
+    [Route("api/hub/{hubId:guid}/device")]
     [ApiController]
     public class DeviceController : ControllerBase
     {
